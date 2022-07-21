@@ -4,19 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bip32": "^2.0.4",
-    "bip39": "^3.0.2",
-    "bitcoinjs-lib": "^5.1.6",
-    "chalk": "^2.4.2",
+    "bip32": "^3.0.1",
+    "bip39": "^3.0.4",
+    "bitcoinjs-lib": "^6.0.1",
+    "chalk": "4.1.2",
     "easy-bitcoin-js": "^0.2.2",
     "fs": "0.0.1-security",
     "machine-uuid-sync": "^1.0.9",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "tiny-secp256k1": "^2.2.1"
   }
 }

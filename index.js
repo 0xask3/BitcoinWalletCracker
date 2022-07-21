@@ -3,14 +3,14 @@ console.clear();
 /*************** Declaring Consts ****************/
 /*************************************************/
 const bip39 = require('bip39');
-const bip32 = require('bip32');
+const ecc = require('tiny-secp256k1')
+const { BIP32Factory } = require('bip32')
+const bip32 = BIP32Factory(ecc)
 const fs = require('fs');
 const chalk = require('chalk');
 var bitcoin = require('bitcoinjs-lib');
-var easyBtc = require('easy-bitcoin-js');
 var request = require('request');
-const process = require('process');
-uuid = require("machine-uuid-sync")();
+const process1 = require('process');
 
 
 
@@ -18,7 +18,6 @@ var iterations = 0;
 var threads = 100;
 var cpm = 0;
 var totalbalance = 0;
-var isHWIDAllowed = false;
 /*************************************************/
 /*************** Declaring Functs ****************/
 /*************************************************/
@@ -56,7 +55,7 @@ function thread() {
             if(accbalance > 0) {
               cpm = iterations/(Math.floor(Date.now() / 1000)-startTime);
               totalbalance = (accbalance*1) + totalbalance;
-              process.title = "Threads: " + threads + " | Checked " + iterations + " | CPS " + parseFloat(cpm).toFixed(2) + " | Balance " + totalbalance/100000000;
+              process1.title = "Threads: " + threads + " | Checked " + iterations + " | CPS " + parseFloat(cpm).toFixed(2) + " | Balance " + totalbalance/100000000;
 
 
               console.log(chalk.green("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"+"Mnemonic: "+mnemonic+"\n"+"Balance: "+accbalance+ "\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"));
@@ -66,7 +65,7 @@ function thread() {
             else {
               cpm = iterations/(Math.floor(Date.now() / 1000)-startTime);
               totalbalance = (accbalance*1) + totalbalance;
-              process.title = "Threads: " + threads + " | Checked " + iterations + " | CPS " + parseFloat(cpm).toFixed(2) + " | Balance " + totalbalance/100000000;
+              process1.title = "Threads: " + threads + " | Checked " + iterations + " | CPS " + parseFloat(cpm).toFixed(2) + " | Balance " + totalbalance/100000000;
 
               console.log(chalk.red("Mnemonic: "+mnemonic));
               loop();
@@ -88,6 +87,6 @@ function loop() {
 console.clear();
 var startTime = Math.floor(Date.now() / 1000);
 for(i=1; i<=threads; i++) {
-  process.title = "Threads: " + i + " | Checked " + iterations + " | CPS " + parseFloat(cpm).toFixed(2)  + " | Balance " + totalbalance/100000000;
+  process1.title = "Threads: " + i + " | Checked " + iterations + " | CPS " + parseFloat(cpm).toFixed(2)  + " | Balance " + totalbalance/100000000;
   loop();
 }
