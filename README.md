@@ -1,1 +1,3 @@
 # BitcoinWalletCracker
+
+Try your luck :)
